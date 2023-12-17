@@ -1,6 +1,6 @@
 ---
-name: custom issue template
-about: "귀찮아도 가능하면 구체적으로 써볼까요 우리 \U0001F643"
+name: Issue template
+about: "작업 사항을 입력해 주세요. \U0001F643"
 title: ''
 labels: ''
 assignees: ''
