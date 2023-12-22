@@ -3,8 +3,16 @@
    License: none (public domain)
 */
 
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100dvh;
+  /* https://abcdqbbq.tistory.com/104 */
+  overflow: hidden;
+}
+
 html,
-body,
 div,
 span,
 applet,
