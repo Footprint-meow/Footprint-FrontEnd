@@ -1,12 +1,11 @@
 // import React from "react";
 import Header from "../../components/Header";
-import { IoChevronBackOutline } from "react-icons/io5";
-import { IoMdMenu } from "react-icons/io";
+import { icons } from "../../constants/header-icons";
 import { MenuType } from "../../types/header";
 function HomePage() {
   const menu: MenuType = {
-    left: <IoChevronBackOutline size="2rem" />,
-    right: <IoMdMenu size="2rem" />,
+    left: icons.BACK,
+    right: icons.HAMBERGER,
   };
 
   return (
