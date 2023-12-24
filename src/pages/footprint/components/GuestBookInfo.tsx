@@ -2,7 +2,7 @@ const GuestBookInfo = () => {
   return (
     <div className="px-5">
       <div className="flex items-center w-full px-6 pl-3 rounded-full bg-sub-2">
-        <img src="/sample.jpg" className="object-cover w-20 h-20 rounded-full" />
+        <img src="/src/assets/dummy2.jpg" className="object-cover w-20 h-20 rounded-full" />
         <div className="bg-white rounded-full "></div>
         <div className="flex flex-col gap-1 p-2 basis-4/5">
           <div className="flex items-center gap-3">
