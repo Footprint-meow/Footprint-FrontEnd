@@ -33,6 +33,34 @@ function FootprintPage() {
           </div>
         </div>
       </div>
+      <div className="flex pt-10 text-center text-primary-1">
+        <div
+          onClick={() => {
+            changeTab(0);
+          }}
+          className={
+            tab === 0
+              ? 'border-b-4 font-bold flex-1 border-primary-1'
+              : 'border-b-[3px] font-base flex-1 border-primary-1'
+          }
+        >
+          <p>발자국 조회</p>
+        </div>
+        <div
+          onClick={() => {
+            changeTab(1);
+          }}
+          className={
+            tab === 1
+              ? 'border-b-4 font-bold flex-1 border-primary-1'
+              : 'border-b-[3px] font-base flex-1 border-primary-1'
+          }
+        >
+          <p>사진첩 보기</p>
+        </div>
+      </div>
+      {/* 탭에 따른 컴포넌트 보여주기 */}
+      {tab === 0 ? <FootprintTab /> : <PhotoAlbumTab />}
     </div>
   );
 }
