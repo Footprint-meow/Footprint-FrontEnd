@@ -1,17 +1,13 @@
-import React from "react";
-import { MenuTypeProp } from "../types/header";
-import { useNavigate } from "react-router-dom";
-const Header = (menu: MenuTypeProp) => {
-  const {left, right} = menu.menu;
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  }
-  
+import { HeaderProp } from "../types/header";
+
+const Header = (props: HeaderProp) => {
+  const { left, right } = props.menu;
+  const { left_func, right_func } = props.func;
+
   return (
     <div className="w-full flex justify-between px-5">
-      <div onClick={goBack}>{left}</div>
-      <div>{right}</div>
+      <div onClick={left_func}>{left}</div>
+      <div onClick={right_func}>{right}</div>
     </div>
   );
 };
