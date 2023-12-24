@@ -1,4 +1,3 @@
-import React from "react";
 import AddGuestBook from "./AddGuestBook";
 
 const MyGuestBookList = () => {
@@ -9,16 +8,16 @@ const MyGuestBookList = () => {
   }
 
   return (
-    <div className="flex flex-col items-start justify-between px-7 py-5 h-1/3">
+    <div className="flex flex-col items-start justify-between px-7 py-5 h-1/3 w-screen overflow-x-auto whitespace-nowrap">
       <p className="text-xl font-bold pb-4">나의 방명록</p>
       <div>
         <ul className="flex gap-4">
           {guestbooks.map((book) =>
             book !== "add" ? (
-              <li>
+              <li key={book}>
                 <div className="w-32 h-32 overflow-hidden rounded-full">
                   <img
-                    src="/src/constants/dummy1.png"
+                    src="/src/assets/dummy1.png"
                     alt="dummy"
                     className="object-cover w-full h-full"
                   />
