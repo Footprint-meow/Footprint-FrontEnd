@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
 
 // 헤더 아이콘 type
-export interface MenuType {
+export interface IMenu {
   [key: string]: ReactNode | null;
 }
 
 // 아이콘에 할당할 함수 type
-export interface MenuFuncType {
+export interface IMenuFunc {
   left_func: MouseEventHandler<HTMLDivElement> | null;
   right_func: MouseEventHandler<HTMLDivElement> | null;
 }
 
-export interface HeaderProp {
-  menu: MenuType;
-  func: MenuFuncType;
+export interface IHeaderProp {
+  menu: IMenu;
+  func: IMenuFunc;
 }

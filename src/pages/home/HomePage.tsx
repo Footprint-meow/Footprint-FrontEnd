@@ -1,17 +1,17 @@
 // import React from "react";
 import Header from "../../components/Header";
 import { icons } from "../../constants/header-icons";
-import { MenuFuncType, MenuType } from "../../types/header";
+import { IMenuFunc, IMenu } from "../../types/header";
 import Banner from "./components/Banner";
 import MyGuestBookList from "./components/MyGuestBookList";
 import RecentFootprint from "./components/RecentFootprint";
 function HomePage() {
-  const menu: MenuType = {
+  const menu: IMenu = {
     left: null,
     right: icons.HAMBERGER,
   };
 
-  const func: MenuFuncType = {
+  const func: IMenuFunc = {
     left_func: null,
     right_func: () => console.log("right_func"),
   };

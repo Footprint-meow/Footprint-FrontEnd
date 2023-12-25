@@ -1,6 +1,6 @@
-import { HeaderProp } from "../types/header";
+import { IHeaderProp } from "../types/header";
 
-const Header = (props: HeaderProp) => {
+const Header = (props: IHeaderProp) => {
   const { left, right } = props.menu;
   const { left_func, right_func } = props.func;
 
