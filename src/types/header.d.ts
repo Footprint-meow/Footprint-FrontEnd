@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 // 헤더 아이콘 type
 export interface IMenu {
-  [key: string]: ReactNode | null;
+  [key: string]: ReactNode | string | null;
 }
 
 // 아이콘에 할당할 함수 type

@@ -8,6 +8,7 @@ import RecentFootprint from "./components/RecentFootprint";
 function HomePage() {
   const menu: IMenu = {
     left: null,
+    center: null,
     right: icons.HAMBERGER,
   };
 

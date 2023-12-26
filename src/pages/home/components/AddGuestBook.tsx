@@ -1,7 +1,7 @@
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
-const AddGuestBook = () => {
+const AddGuestBookBtn = () => {
   const style = {
     color: "#B6BBC4",
   };
@@ -12,4 +12,4 @@ const AddGuestBook = () => {
   );
 };
 
-export default AddGuestBook;
+export default AddGuestBookBtn;

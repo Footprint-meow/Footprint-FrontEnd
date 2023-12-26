@@ -1,4 +1,4 @@
-import AddGuestBook from "./AddGuestBook";
+import AddGuestBookBtn from "./AddGuestBook";
 
 const MyGuestBookList = () => {
   const guestbooks = ["원쥬의 홈", "사무실"];
@@ -25,7 +25,7 @@ const MyGuestBookList = () => {
                 <p className="pt-2">{book}</p>
               </li>
             ) : (
-              <AddGuestBook />
+              <AddGuestBookBtn />
             )
           )}
         </ul>
