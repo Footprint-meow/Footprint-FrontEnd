@@ -9,6 +9,7 @@ const AddGuestBook = () => {
 
   const menu: IMenu = {
     left: icons.CLOSE,
+    center: "방명록 생성하기",
     right: null,
   };
 
