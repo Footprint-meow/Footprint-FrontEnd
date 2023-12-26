@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AddGuestBookBtn from "./AddGuestBook";
 
 const MyGuestBookList = () => {
@@ -14,16 +15,18 @@ const MyGuestBookList = () => {
         <ul className="flex gap-4">
           {guestbooks.map((book) =>
             book !== "add" ? (
-              <li key={book}>
-                <div className="w-32 h-32 overflow-hidden rounded-full">
-                  <img
-                    src="/src/assets/dummy1.png"
-                    alt="dummy"
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                <p className="pt-2">{book}</p>
-              </li>
+              <Link to="/add-guestbook">
+                <li key={book}>
+                  <div className="w-32 h-32 overflow-hidden rounded-full">
+                    <img
+                      src="/src/assets/dummy1.png"
+                      alt="dummy"
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  <p className="pt-2">{book}</p>
+                </li>
+              </Link>
             ) : (
               <AddGuestBookBtn />
             )

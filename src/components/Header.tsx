@@ -6,7 +6,7 @@ const Header = (props: IHeaderProp) => {
 
   return (
     <div className="w-full flex justify-between items-center px-5 h-10 bg-transparent z-10 absolute top-0">
-      {left ? <div onClick={left_func}>{left}</div> : <div onClick={left_func}>{right}</div>}
+      {left ? <div onClick={left_func}>{left}</div> : <div className="invisible">{right}</div>}
       <div className="text-lg font-bold">{center}</div>
       {right ? <div onClick={right_func}>{right}</div> : <div className="invisible">{left}</div>}
     </div>

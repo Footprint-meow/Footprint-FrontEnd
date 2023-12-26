@@ -21,9 +21,15 @@ const AddGuestBook = () => {
   return (
     <div className="w-full">
       <Header menu={menu} func={func} />
-      <div className="h-[calc(100vh-2.5rem)] absolute top-10 z-15 flex flex-col justify-between">
-        Helo add your guest book;
+      <div className="h-[calc(100vh-2.5rem)] pt-10 flex flex-col px-7">
+        <div className="flex gap-3 pt-4">
+          <div className="border-b-[3px] border-primary-1 leading-6 text-primary-1 font-bold">기본 설정</div>
+          {/* <div className="text-[#D9D9D9] leading-6">기본 설정</div> */}
+          <div className="text-[#D9D9D9] leading-6">프로필</div>
+          <div className="text-[#D9D9D9] leading-6">소개</div>
+        </div>
         <Outlet />
+        {/* 현재위치를 나타내는 상태도 prop로 */}
       </div>
     </div>
   );
