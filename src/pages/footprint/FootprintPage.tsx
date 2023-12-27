@@ -22,8 +22,8 @@ function FootprintPage() {
           }}
           className={
             tab === 0
-              ? 'border-b-4 font-bold flex-1 border-primary-1'
-              : 'border-b-[3px] font-base flex-1 border-primary-1'
+              ? 'border-b-[3px] font-bold flex-1 border-primary-1'
+              : 'border-b-[1px] text-primary-2 font-base flex-1 border-primary-2'
           }
         >
           <p>발자국 조회</p>
@@ -34,8 +34,8 @@ function FootprintPage() {
           }}
           className={
             tab === 1
-              ? 'border-b-4 font-bold flex-1 border-primary-1'
-              : 'border-b-[3px] font-base flex-1 border-primary-1'
+              ? 'border-b-[3px] font-bold flex-1 border-primary-1'
+              : 'border-b-[1px] font-base flex-1 text-primary-2 border-primary-2'
           }
         >
           <p>사진첩 보기</p>
