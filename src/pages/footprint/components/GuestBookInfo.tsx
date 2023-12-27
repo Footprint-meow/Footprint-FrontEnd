@@ -12,8 +12,8 @@ const GuestBookInfo = () => {
           </div>
           <div className="text-sm">경상 북도 구미시 인의동</div>
           <div className="flex justify-between gap-2 text-center text-white">
-            <div className="flex-1 p-1 text-sm rounded-xl bg-primary-1">방명록 편집</div>
-            <div className="flex-1 p-1 text-sm rounded-xl bg-primary-1">방명록 공유</div>
+            <div className="flex-1 p-1 text-sm rounded-md bg-primary-1">방명록 편집</div>
+            <div className="flex-1 p-1 text-sm rounded-md bg-primary-1">방명록 공유</div>
           </div>
         </div>
       </div>
