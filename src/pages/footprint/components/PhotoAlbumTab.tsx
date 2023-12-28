@@ -58,7 +58,6 @@ function PhotoAlbumTab() {
                       <IoMdClose className="absolute top-0 right-0" onClick={closeModal} size="2rem" color="white" />
                     </div>
                   </div>
-                  {/* contain 으로 할지 cover로 할지 */}
                   <img onClick={openModal} className="object-contain w-full h-4/5" src="/src/assets/dummy1.png" />
                 </Dialog.Panel>
               </Transition.Child>

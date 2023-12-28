@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { IoMdClose } from 'react-icons/io';
-import { SlClock } from 'react-icons/sl';
 
 function FootprintTab() {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,15 +76,10 @@ function FootprintTab() {
                     <IoMdClose onClick={closeModal} size="1.5rem" />
                   </div>
 
-                  <div className="flex items-center gap-2 p-1 pt-6 text-gray-500">
-                    {/* 하루가 안넘어가면 몇시간전 넘어가면 몇일전으로 */}
-                    {/* <SlClock size="1.2rem" /> */}
-                    {/* <p>18:23</p> */}
-                    {/* <p className="text-slate-400">일주일전</p> */}
-                  </div>
+                  <div className="flex items-center gap-2 p-1 pt-6 text-gray-500"></div>
                   <div className="flex flex-col justify-between flex-1 p-4 border rounded-xl">
                     <p className="text-left text-gray-500">
-                      오늘은 정말 특별어요한 날이었어요.별어요한 날이었어요. 별어요한 날이었어요. 별어요한 날이었어요.
+                      오늘은 정말 특별한 날이었어요.별어요한 날이었어요. 별어요한 날이었어요. 별어요한 날이었어요. ㅎㅎ
                     </p>
                     <p className="text-right text-gray-500">From 이승현</p>
                   </div>
