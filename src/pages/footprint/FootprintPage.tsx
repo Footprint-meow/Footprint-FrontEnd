@@ -1,48 +1,25 @@
-import { useEffect, useState } from 'react';
-import FootprintTab from './components/FootprintTab';
-import PhotoAlbumTab from './components/PhotoAlbumTab';
-import GuestBookInfo from './components/GuestBookInfo';
-
-type tab = 0 | 1;
+import { icons } from '../../constants/header-icons';
+import { IMenuFunc, IMenu } from '../../types/header';
+import Header from '../../components/Header';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 function FootprintPage() {
-  const [tab, setTab] = useState<tab>(0);
+  // const navigate = useNavigate();
 
-  const changeTab = (index: number) => {
-    setTab(index);
+  const menu: IMenu = {
+    left: icons.BACK,
+    center: '방명록',
+    right: null,
+  };
+
+  const func: IMenuFunc = {
+    left_func: null,
   };
 
   return (
-    <div className="w-full pt-5">
-      <GuestBookInfo />
-      <div className="flex pt-10 text-center text-primary-1">
-        <div
-          onClick={() => {
-            changeTab(0);
-          }}
-          className={
-            tab === 0
-              ? 'border-b-[3px] font-bold flex-1 border-primary-1'
-              : 'border-b-[1px] text-primary-2 font-base flex-1 border-primary-2'
-          }
-        >
-          <p>발자국 조회</p>
-        </div>
-        <div
-          onClick={() => {
-            changeTab(1);
-          }}
-          className={
-            tab === 1
-              ? 'border-b-[3px] font-bold flex-1 border-primary-1'
-              : 'border-b-[1px] font-base flex-1 text-primary-2 border-primary-2'
-          }
-        >
-          <p>사진첩 보기</p>
-        </div>
-      </div>
-      {/* 탭에 따른 컴포넌트 보여주기 */}
-      {tab === 0 ? <FootprintTab /> : <PhotoAlbumTab />}
+    <div className="relative w-full h-screen">
+      <Header menu={menu} func={func} />
+      <Outlet />
     </div>
   );
 }
