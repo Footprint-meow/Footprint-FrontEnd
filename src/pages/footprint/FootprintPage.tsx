@@ -17,7 +17,7 @@ function FootprintPage() {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full h-screen">
       <Header menu={menu} func={func} />
       <Outlet />
     </div>
