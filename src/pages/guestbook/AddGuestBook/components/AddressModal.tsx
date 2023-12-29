@@ -1,21 +1,20 @@
 import React from "react";
 import DaumPostcode from "react-daum-postcode";
 
-const AddressModal = ({ setModal }: any) => {
-  const postCodeStyle = {
-    width: "250px",
-    height: "400px",
-    // display: modalState ? "block" : "none",
-  };
+const AddressModal = ({ setModal, setAddress }: any) => {
   const onCompletePost = (data: any) => {
     setModal(false);
-    console.log("주소 선택!", data);
+    console.log("주소 선택!", data.jibunAddress);
+    setAddress(data.jibunAddress);
   };
 
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-70 text-center">
-      <div className="bg-white rounded w-10/12 md:w-1/3">
-        <DaumPostcode style={postCodeStyle} onComplete={onCompletePost} />
+    <div
+      onClick={() => setModal(false)}
+      className="h-full w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-60 text-center"
+    >
+      <div className="w-4/5 h-4/5 bg-white">
+        <DaumPostcode style={{ height: "100%" }} onComplete={onCompletePost} />
       </div>
     </div>
   );
