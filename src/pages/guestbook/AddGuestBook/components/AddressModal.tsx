@@ -1,10 +1,14 @@
 import React from "react";
 import DaumPostcode from "react-daum-postcode";
+import { IAddr, IAddressModalProp } from "../../interfaces";
 
-const AddressModal = ({ setModal, setAddress }: any) => {
-  const onCompletePost = (data: any) => {
+/* @TODO: 모달창 전환 애니메이션 추가하기
+https://velog.io/@hyumapr/React-Transition-Group을-도입해보자
+*/
+
+const AddressModal = ({ setModal, setAddress }: IAddressModalProp) => {
+  const onCompletePost = (data: IAddr) => {
     setModal(false);
-    console.log("주소 선택!", data);
     if (data.jibunAddress) {
       setAddress(data.jibunAddress);
     } else if (data.address) {

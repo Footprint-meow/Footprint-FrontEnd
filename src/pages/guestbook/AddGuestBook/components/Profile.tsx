@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import AddressModal from "./AddressModal";
 import { IAddressObject, IGuesetBookState } from "../../interfaces";
-import { formattingAddress } from "../../utils";
+import { formattingAddress, getGeocode } from "../../utils";
 
 const Profile = () => {
   const [modal, setModal] = useState(false);
-  const {guestbook, setGuestbook} = useOutletContext<IGuesetBookState>();
+  const { guestbook, setGuestbook } = useOutletContext<IGuesetBookState>();
   const [address, setAddress] = useState<string | null>(null);
   const [obj, setObj] = useState<IAddressObject>({
     sigungu: "",
@@ -19,32 +19,31 @@ const Profile = () => {
   };
 
   const onChangeNextBtn = () => {
-    setGuestbook({
-      address: address,
-      name: name,
-      description: null,
-      photo: null,
-      latitude: null,
-      longitude: null,
-    });
-    console.log("[In Profile] guestbook: ", guestbook);
+    if (guestbook?.latitude && guestbook.longitude) {
+      setGuestbook((prev) => ({
+        ...prev!,
+        address: address,
+        name: name,
+      }));
+    }
   };
 
   useEffect(() => {
     if (address) {
       setObj(formattingAddress(address));
 
-      // 기본 설정 탭에서 이름, 주소 외에는 null로 입력했기 때문에
-      // 다음 탭으로 갔다가 이전 탭으로 돌아올 경우 이전 데이터 소실을 염두해둬야함 -> 필요하면 추후 리팩토링 @TODO
-      setGuestbook({
-        address: address,
-        name: name,
-        description: null,
-        photo: null,
-        latitude: null,
-        longitude: null,
+      getGeocode(address).then((geocode) => {
+        setGuestbook({
+          address: address,
+          name: name,
+          latitude: geocode.latitude,
+          longitude: geocode.longitude,
+          description: null,
+          photo: null,
+        });
       });
-      console.log("[useState] guestbook: ", guestbook);
+      // 기본 설정 탭에서 이름, 주소 외에는 null로 입력했기 때문에
+      // 다음 탭으로 갔다가 이전 탭으로 돌아올 경우 이전 데이터 소실을 염두에 둬야함 -> 필요하면 추후 리팩토링 @TODO
     }
   }, [address]);
 
@@ -86,10 +85,7 @@ const Profile = () => {
         </div>
       </div>
       {/* TODO: null값 있을 경우 버튼 회색 표시 */}
-      <Link
-        onClick={onChangeNextBtn}
-        to="/add-guestbook/photo"
-      >
+      <Link to="/add-guestbook/photo" onClick={onChangeNextBtn}>
         <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
           다음
         </button>

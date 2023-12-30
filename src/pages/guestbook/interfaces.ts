@@ -20,3 +20,18 @@ export interface IGuesetBookState {
   guestbook: IGuestBook | null;
   setGuestbook: React.Dispatch<React.SetStateAction<IGuestBook | null>>;
 }
+
+export interface IAddr {
+  address: string;
+  jibunAddress: string;
+}
+
+export interface IAddressModalProp {
+  setModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setAddress: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface IGeocode {
+  latitude: number | null,
+  longitude: number | null,
+}
