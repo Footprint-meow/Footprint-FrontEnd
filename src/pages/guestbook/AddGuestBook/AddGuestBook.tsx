@@ -1,10 +1,13 @@
+import React, { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import Header from "../../../components/Header";
 import { IMenu, IMenuFunc } from "../../../types/header";
 import { icons } from "../../../constants/header-icons";
+import { IGuestBook } from "../interfaces";
 
 const AddGuestBook = () => {
   const navigate = useNavigate();
+  const [guestbook, setGuestbook] = useState<IGuestBook | null>(null);
   const { pathname } = useLocation();
 
   const menu: IMenu = {
@@ -59,8 +62,13 @@ const AddGuestBook = () => {
             소개
           </div>
         </div>
-        
-        <Outlet />
+        <Outlet
+          context={{
+            guestbook,
+            setGuestbook,
+          }}
+        />
+        {/* 현재위치를 나타내는 상태도 prop로 */}
       </div>
     </div>
   );

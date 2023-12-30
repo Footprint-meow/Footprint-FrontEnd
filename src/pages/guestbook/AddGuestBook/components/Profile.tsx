@@ -1,21 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import AddressModal from "./AddressModal";
-import { IAddressObject, IGuestBook } from "../../interfaces";
+import { IAddressObject, IGuesetBookState } from "../../interfaces";
 import { formattingAddress } from "../../utils";
 
 const Profile = () => {
   const [modal, setModal] = useState(false);
-  const [guestbook, setGuestbook] = useState<IGuestBook | null>(null);
-  const [address, setAddress] = useState("");
+  const {guestbook, setGuestbook} = useOutletContext<IGuesetBookState>();
+  const [address, setAddress] = useState<string | null>(null);
   const [obj, setObj] = useState<IAddressObject>({
     sigungu: "",
     dong: "",
   });
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string | null>(null);
 
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
+  };
+
+  const onChangeNextBtn = () => {
+    setGuestbook({
+      address: address,
+      name: name,
+      description: null,
+      photo: null,
+      latitude: null,
+      longitude: null,
+    });
+    console.log("[In Profile] guestbook: ", guestbook);
   };
 
   useEffect(() => {
@@ -32,14 +44,10 @@ const Profile = () => {
         latitude: null,
         longitude: null,
       });
-      console.log("[In Profile] guestbook: ", guestbook);
+      console.log("[useState] guestbook: ", guestbook);
     }
-  }, [modal]);
+  }, [address]);
 
-  const dataToSend = {
-    guestbook,
-    setGuestbook,
-  };
   return (
     <div className="px-2 py-4 w-full h-full flex flex-col justify-between">
       {modal && <AddressModal setModal={setModal} setAddress={setAddress} />}
@@ -73,10 +81,16 @@ const Profile = () => {
             placeholder="두 글자 이상의 이름을 지어 주세요"
             className="w-full"
             onChange={onChangeName}
+            value={name !== null ? name : ""}
           />
         </div>
       </div>
-      <Link to="/add-guestbook/photo" state={dataToSend}>
+      {/* TODO: null값 있을 경우 버튼 회색 표시 */}
+      <Link
+        onClick={onChangeNextBtn}
+        to="/add-guestbook/photo"
+        // state={dataToSend}
+      >
         <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
           다음
         </button>

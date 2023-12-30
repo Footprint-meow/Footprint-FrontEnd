@@ -5,7 +5,11 @@ const AddressModal = ({ setModal, setAddress }: any) => {
   const onCompletePost = (data: any) => {
     setModal(false);
     console.log("주소 선택!", data);
-    setAddress(data.jibunAddress);
+    if (data.jibunAddress) {
+      setAddress(data.jibunAddress);
+    } else if (data.address) {
+      setAddress(data.address);
+    }
   };
 
   return (
