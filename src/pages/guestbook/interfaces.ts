@@ -30,3 +30,8 @@ export interface IAddressModalProp {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
   setAddress: React.Dispatch<React.SetStateAction<string | null>>;
 }
+
+export interface IGeocode {
+  latitude: number | null,
+  longitude: number | null,
+}

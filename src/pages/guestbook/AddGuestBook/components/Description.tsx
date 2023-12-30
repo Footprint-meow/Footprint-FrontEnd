@@ -40,7 +40,7 @@ const Description = () => {
           className="bg-[#d9d9d93f] p-7 w-full h-full rounded-xl"
         ></textarea>
       </div>
-      <Link to="/" onClick={()=> console.log(guestbook)}>
+      <Link to="/" onClick={()=> console.log("생성버튼 클릭: ", guestbook)}>
         <button className="w-full bg-primary-1 text-white text-lg font-bold leading-9 m-auto rounded-xl h-12 mb-6">
           방명록 등록하기
         </button>

@@ -5,7 +5,7 @@ import { CiCamera } from "react-icons/ci";
 import { IGuesetBookState } from "../../interfaces";
 
 const Photo = () => {
-  const { setGuestbook } = useOutletContext<IGuesetBookState>();
+  const { guestbook, setGuestbook } = useOutletContext<IGuesetBookState>();
   const [photo, setPhoto] = useState([]);
 
   const onChange = (imageList: ImageListType) => {
@@ -17,6 +17,8 @@ const Photo = () => {
       ...prevState!,
       photo: photo,
     }));
+
+    console.log("Photo에서 : ", guestbook);
   }, [photo]);
 
   return (

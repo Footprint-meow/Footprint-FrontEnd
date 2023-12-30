@@ -9,7 +9,6 @@ https://velog.io/@hyumapr/React-Transition-Group을-도입해보자
 const AddressModal = ({ setModal, setAddress }: IAddressModalProp) => {
   const onCompletePost = (data: IAddr) => {
     setModal(false);
-    console.log("주소 선택!", data);
     if (data.jibunAddress) {
       setAddress(data.jibunAddress);
     } else if (data.address) {
