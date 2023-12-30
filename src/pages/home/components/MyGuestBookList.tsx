@@ -8,7 +8,7 @@ const MyGuestBookList = () => {
   }
 
   return (
-    <div className="flex flex-col items-start justify-between px-7 py-5 min-h-1/3 m-0 w-screen overflow-x-auto whitespace-nowrap">
+    <div className="flex flex-col items-start justify-between px-7 py-5 min-h-1/3 m-0 w-screen overflow-x-auto whitespace-nowrap overflow-y-hidden">
       <p className="text-xl font-bold pb-4">나의 방명록</p>
       <div>
         <ul className="flex gap-4">
