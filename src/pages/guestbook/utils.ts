@@ -51,3 +51,10 @@ export const confirmPhoto = (guestbook: IGuestBook | null): boolean => {
   }
   return false;
 };
+
+export const confirmDesc = (guestbook: IGuestBook | null) : boolean => {
+  if(guestbook && guestbook.description) {
+    return true;
+  }
+  return false;
+}

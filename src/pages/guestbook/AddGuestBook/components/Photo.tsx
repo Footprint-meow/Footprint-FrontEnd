@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { CiCamera } from "react-icons/ci";
 import { IGuesetBookState } from "../../interfaces";
