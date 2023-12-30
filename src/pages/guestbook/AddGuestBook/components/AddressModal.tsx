@@ -19,7 +19,7 @@ const AddressModal = ({ setModal, setAddress }: IAddressModalProp) => {
   return (
     <div
       onClick={() => setModal(false)}
-      className="h-full w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-60 text-center"
+      className="h-full w-full fixed left-0 top-0 flex justify-center items-center bg-black bg-opacity-60 text-center z-10"
     >
       <div className="w-4/5 h-4/5 bg-white">
         <DaumPostcode style={{ height: "100%" }} onComplete={onCompletePost} />

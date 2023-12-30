@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import { IGuesetBookState } from "../../interfaces";
+import { confirmDesc } from "../../utils";
 
 /*
 텍스트 에디터 넣고 싶음. 호스트도 자기 방명록에 대한 소개 문구를 커스텀하고 싶어하지 않을까
@@ -9,11 +10,22 @@ import { IGuesetBookState } from "../../interfaces";
 */
 
 const Description = () => {
+  const navigate = useNavigate();
   const { guestbook, setGuestbook } = useOutletContext<IGuesetBookState>();
   const [desc, setDesc] = useState<string>("");
+  const [shake, setShake] = useState<boolean>(false);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDesc(e.target.value);
+  };
+
+  const nextHandler = () => {
+    if (confirmDesc(guestbook)) {
+      setShake(false);
+      navigate("/");
+    } else {
+      setShake(!shake);
+    }
   };
 
   useEffect(() => {
@@ -25,7 +37,11 @@ const Description = () => {
 
   return (
     <div className="px-2 py-4 w-full h-full flex flex-col justify-between">
-      <div className="text-xl font-bold py-8 leading-8">
+      <div
+        className={`text-xl font-bold py-8 leading-8 ${
+          shake ? "animate-shake" : ""
+        }`}
+      >
         <p>방명록의 소개 문구를</p>
         <p>작성해 주세요</p>
       </div>
@@ -40,11 +56,17 @@ const Description = () => {
           className="bg-[#d9d9d93f] p-7 w-full h-full rounded-xl"
         ></textarea>
       </div>
-      <Link to="/" onClick={()=> console.log("생성버튼 클릭: ", guestbook)}>
-        <button className="w-full bg-primary-1 text-white text-lg font-bold leading-9 m-auto rounded-xl h-12 mb-6">
-          방명록 등록하기
-        </button>
-      </Link>
+      <div onClick={nextHandler}>
+      {confirmDesc(guestbook) ? (
+          <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
+            방명록 등록하기
+          </button>
+        ) : (
+          <button className="w-full bg-disabled text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
+            방명록 등록하기
+          </button>
+        )}
+      </div>
     </div>
   );
 };
