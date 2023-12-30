@@ -12,8 +12,10 @@ const AddGuestBook = () => {
   const [guestbook, setGuestbook] = useState<IGuestBook | null>(null);
   const { pathname } = useLocation();
 
+  // @TODO: 이전 탭 데이터 저장하기 리팩토링하기
+
   const menu: IMenu = {
-    left: icons.CLOSE,
+    left: icons.BACK,
     center: "방명록 생성하기",
     right: null,
   };
