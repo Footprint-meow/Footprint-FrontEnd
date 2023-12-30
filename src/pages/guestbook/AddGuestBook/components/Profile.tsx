@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AddressModal from "./AddressModal";
-import { IAddressObject } from "../../interfaces";
+import { IAddressObject, IGuestBook } from "../../interfaces";
 import { formattingAddress } from "../../utils";
 
 const Profile = () => {
   const [modal, setModal] = useState(false);
+  const [guestbook, setGuestbook] = useState<IGuestBook | null>(null);
   const [address, setAddress] = useState("");
   const [obj, setObj] = useState<IAddressObject>({
     sigungu: "",
@@ -20,12 +21,27 @@ const Profile = () => {
   useEffect(() => {
     if (address) {
       setObj(formattingAddress(address));
+
+      // 기본 설정 탭에서 이름, 주소 외에는 null로 입력했기 때문에
+      // 다음 탭으로 갔다가 이전 탭으로 돌아올 경우 이전 데이터 소실을 염두해둬야함 -> 필요하면 추후 리팩토링 @TODO
+      setGuestbook({
+        address: address,
+        name: name,
+        description: null,
+        photo: null,
+        latitude: null,
+        longitude: null,
+      });
+      console.log("[In Profile] guestbook: ", guestbook);
     }
-    console.log(name);
   }, [modal]);
 
+  const dataToSend = {
+    guestbook,
+    setGuestbook,
+  };
   return (
-    <div className="px-2 py-4 w-full h-full flex flex-col justify-between ">
+    <div className="px-2 py-4 w-full h-full flex flex-col justify-between">
       {modal && <AddressModal setModal={setModal} setAddress={setAddress} />}
       <div className="flex flex-col justify-between">
         <div className="text-xl font-bold py-8 leading-8">
@@ -50,7 +66,6 @@ const Profile = () => {
             )}
           </div>
         </div>
-
         <div>
           <h3 className="font-semibold py-3">방명록 이름 설정하기</h3>
           <input
@@ -61,10 +76,8 @@ const Profile = () => {
           />
         </div>
       </div>
-      <Link to="/add-guestbook/photo">
-        <button
-          className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6"
-        >
+      <Link to="/add-guestbook/photo" state={dataToSend}>
+        <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
           다음
         </button>
       </Link>
