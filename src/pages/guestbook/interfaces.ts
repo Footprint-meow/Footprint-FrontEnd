@@ -11,7 +11,7 @@ export interface IGuestBook {
   name: string | null;
   address: string | null;
   description: string | null;
-  photo: string | null;
+  photo: string | null | never[];
   latitude: number | undefined | null;
   longitude: number | undefined | null;
 }

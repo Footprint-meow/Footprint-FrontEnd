@@ -89,7 +89,6 @@ const Profile = () => {
       <Link
         onClick={onChangeNextBtn}
         to="/add-guestbook/photo"
-        // state={dataToSend}
       >
         <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
           다음
