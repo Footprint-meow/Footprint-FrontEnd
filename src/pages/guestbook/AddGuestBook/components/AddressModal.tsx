@@ -4,7 +4,7 @@ import DaumPostcode from "react-daum-postcode";
 const AddressModal = ({ setModal, setAddress }: any) => {
   const onCompletePost = (data: any) => {
     setModal(false);
-    console.log("주소 선택!", data.jibunAddress);
+    console.log("주소 선택!", data);
     setAddress(data.jibunAddress);
   };
 
