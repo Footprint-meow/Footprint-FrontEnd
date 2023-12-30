@@ -5,6 +5,8 @@ import { IMenu, IMenuFunc } from "../../../types/header";
 import { icons } from "../../../constants/header-icons";
 import { IGuestBook } from "../interfaces";
 
+// @TODO: 화면 전환 애니메이션 추가하기
+
 const AddGuestBook = () => {
   const navigate = useNavigate();
   const [guestbook, setGuestbook] = useState<IGuestBook | null>(null);
