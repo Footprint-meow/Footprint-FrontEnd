@@ -8,7 +8,7 @@ export default {
         "primary-2": "#AFC8AD",
         "sub-1": "#EEE7DA",
         "sub-2": "#F2F1EB",
-        "disabled": "#999999",
+        disabled: "#999999",
       },
       animation: {
         wiggle: "wiggle 2s ease-in-out infinite",
@@ -16,5 +16,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line no-undef
+  plugins: [require("tailwindcss-animated")],
 };

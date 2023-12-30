@@ -41,7 +41,7 @@ const AddGuestBook = () => {
                 : "text-[#D9D9D9]"
             }`}
           >
-            기본 설정
+            기본 정보
           </div>
           <div
             style={pathname === "/add-guestbook/photo" ? style : undefined}
