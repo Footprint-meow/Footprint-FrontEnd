@@ -12,9 +12,9 @@ const MyGuestBookList = () => {
       <p className="text-xl font-bold pb-4">나의 방명록</p>
       <div>
         <ul className="flex gap-4">
-          {guestbooks.map((book) =>
+          {guestbooks.map((book, index) =>
             book !== "add" ? (
-              <li key={book}>
+              <li key={index}>
                 <div className="w-32 h-32 overflow-hidden rounded-full">
                   <img
                     src="/src/assets/dummy1.png"
@@ -25,7 +25,7 @@ const MyGuestBookList = () => {
                 <p className="pt-2">{book}</p>
               </li>
             ) : (
-              <AddGuestBookBtn />
+              <AddGuestBookBtn key={index} />
             )
           )}
         </ul>
