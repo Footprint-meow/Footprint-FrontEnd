@@ -19,6 +19,7 @@ function PhotoAlbumTab() {
         <p className="px-4 font-bold">2023년 12월 14일</p>
         {/* 발자국별 반복 */}
         <div className="grid grid-cols-3 pt-5">
+          {/* #TODO 실제 데이터로 이미지 수정해야함 */}
           <img onClick={openModal} className="object-cover w-full h-28" src="/src/assets/dummy1.png" />
           <img className="object-cover w-full h-28" src="/src/assets/dummy2.jpg" />
           <img className="object-cover w-full h-28" src="/src/assets/dummy1.png" />

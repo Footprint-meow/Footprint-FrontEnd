@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { CiCamera } from 'react-icons/ci';
 
 const AddPhoto = () => {
@@ -17,10 +17,6 @@ const AddPhoto = () => {
           const result: string | null = reader.result as string;
           setImgFile(result || '');
         };
-
-        console.log(imgFile);
-        console.log(file);
-        console.log(reader);
       }
     }
   };
@@ -28,7 +24,7 @@ const AddPhoto = () => {
   return (
     <>
       <div className="absolute top-0 w-full h-full pt-16 pb-36 z-15">
-        <div className="flex flex-col h-full px-6 pt-3">
+        <div className="flex flex-col h-full px-8 pt-3">
           <div className="pb-8 text-xl font-bold">
             <p>{guestbook}에</p>
             <div className="flex items-center gap-2">
@@ -58,6 +54,7 @@ const AddPhoto = () => {
         </div>
       </div>
       <div className="absolute bottom-0 w-full p-6">
+        {/* #TODO 이미지 없으면 버튼 비활성화 해야함 */}
         <button className="w-full p-4 text-xl font-bold text-white rounded-2xl bg-primary-1">사진 등록하기</button>
       </div>
     </>

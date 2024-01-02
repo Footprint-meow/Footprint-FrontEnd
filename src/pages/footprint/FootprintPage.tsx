@@ -1,7 +1,7 @@
 import { icons } from '../../constants/header-icons';
 import { IMenuFunc, IMenu } from '../../types/header';
 import Header from '../../components/Header';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 function FootprintPage() {
   // const navigate = useNavigate();
@@ -14,6 +14,7 @@ function FootprintPage() {
 
   const func: IMenuFunc = {
     left_func: null,
+    right_func: null,
   };
 
   return (

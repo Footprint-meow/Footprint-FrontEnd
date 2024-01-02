@@ -11,13 +11,14 @@ function SignUpPage() {
 
   const func: IMenuFunc = {
     left_func: null,
+    right_func: null,
   };
 
   return (
     <div className="relative w-full h-screen">
       <Header menu={menu} func={func} />
       <div className="absolute top-0 w-full h-full pt-14 pb-36 z-15">
-        <div className="w-full h-full px-6 pt-3 ">
+        <div className="w-full h-full px-8 pt-3 ">
           <div className="flex flex-col gap-1 text-xl font-bold text-left">
             <p>친구의 방명록에</p>
             <div className="flex items-center gap-2">
@@ -37,6 +38,7 @@ function SignUpPage() {
                   placeholder="이메일을 입력해주세요"
                   className="flex-1 w-full py-2 text-sm border-b outline-none "
                 ></input>
+                {/* #TODO 버튼 비활성화 하기 */}
                 <button className="px-3 text-sm font-bold text-white rounded-lg bg-primary-1">인증받기</button>
               </div>
             </div>
@@ -88,8 +90,8 @@ function SignUpPage() {
         </div>
       </div>
       <div className="absolute bottom-0 w-full p-6">
+        {/* #TODO 버튼 비활성화 하기 */}
         <button className="w-full p-4 text-xl font-bold text-white rounded-2xl bg-[#878787]">가입완료</button>
-        {/* <button className="w-full p-4 text-xl font-bold text-white rounded-2xl bg-primary-1">가입완료</button> */}
       </div>
     </div>
   );
