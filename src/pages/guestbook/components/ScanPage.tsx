@@ -22,7 +22,6 @@ const ScanPage = () => {
       <Header menu={menu} func={func} />
       <div className="h-[calc(100vh-2.5rem)] mt-10 flex flex-col">
         <QRScanner />
-        This is Scan Page.
       </div>
     </div>
   );
