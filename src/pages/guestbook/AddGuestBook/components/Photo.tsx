@@ -1,15 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { CiCamera } from "react-icons/ci";
 import { IGuesetBookState } from "../../interfaces";
+import { confirmPhoto } from "../../utils";
 
 const Photo = () => {
+  const navigate = useNavigate();
   const { guestbook, setGuestbook } = useOutletContext<IGuesetBookState>();
   const [photo, setPhoto] = useState([]);
+  const [shake, setShake] = useState<boolean>(false);
 
   const onChange = (imageList: ImageListType) => {
     setPhoto(imageList as never[]);
+  };
+
+  const nextHandler = () => {
+    if (confirmPhoto(guestbook)) {
+      setShake(false);
+      navigate("/add-guestbook/desc");
+    } else {
+      setShake(!shake);
+    }
   };
 
   useEffect(() => {
@@ -23,7 +35,11 @@ const Photo = () => {
 
   return (
     <div className="px-2 py-4 w-full h-full flex flex-col justify-between">
-      <div className="text-xl font-bold py-8 leading-8">
+      <div
+        className={`text-xl font-bold py-8 leading-8 ${
+          shake ? "animate-shake" : ""
+        }`}
+      >
         <p>방명록을 대표할 사진을</p>
         <p>설정해 주세요</p>
       </div>
@@ -66,11 +82,18 @@ const Photo = () => {
           )}
         </ImageUploading>
       </div>
-      <Link to="/add-guestbook/desc">
-        <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
-          다음
-        </button>
-      </Link>
+
+      <div onClick={nextHandler}>
+        {confirmPhoto(guestbook) ? (
+          <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
+            다음
+          </button>
+        ) : (
+          <button className="w-full bg-disabled text-white text-lg font-black leading-9 m-auto rounded-xl h-12 mb-6">
+            다음
+          </button>
+        )}
+      </div>
     </div>
   );
 };
