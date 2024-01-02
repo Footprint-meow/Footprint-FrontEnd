@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { IMenu, IMenuFunc } from "../../types/header";
 import { icons } from "../../constants/header-icons";
 import Header from "../../components/Header";
+import { Link } from "react-router-dom";
 
 function GuestBookPage() {
   const navigate = useNavigate();
@@ -51,16 +52,24 @@ function GuestBookPage() {
         </div>
 
         <div className="w-full px-7">
-          <div className="border-slate-800 rounded-lg h-full">어서와 우리집은 처음이지</div>
-          <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-14 shadow-md mb-2">
-            내 발자국 남기기
-          </button>
-          <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-14 shadow-md">
-            다른 사람의 발자국 구경하기
-          </button>
-          <p className="text-center py-4 text-primary-1 text-sm font-semibold underline">
-            나도 방명록 만들기
-          </p>
+          <div className="border-slate-800 rounded-lg h-full">
+            어서와 우리집은 처음이지
+          </div>
+          <Link to="/add-guestbook">
+            <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-14 shadow-md mb-2">
+              내 발자국 남기기
+            </button>
+          </Link>
+          <Link to="/footprint">
+            <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-14 shadow-md">
+              다른 사람의 발자국 구경하기
+            </button>
+          </Link>
+          <Link to="/login">
+            <p className="text-center py-4 text-primary-1 text-sm font-semibold underline">
+              나도 방명록 만들기
+            </p>
+          </Link>
         </div>
       </div>
     </div>
