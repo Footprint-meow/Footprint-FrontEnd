@@ -3,6 +3,7 @@ import { IMenu, IMenuFunc } from "../../types/header";
 import { icons } from "../../constants/header-icons";
 import Header from "../../components/Header";
 import { Link } from "react-router-dom";
+import QRScanner from "./components/QRScanner";
 
 function GuestBookPage() {
   const navigate = useNavigate();
@@ -14,8 +15,9 @@ function GuestBookPage() {
 
   const func: IMenuFunc = {
     left_func: () => navigate(-1),
-    right_func: null,
+    right_func: () => navigate("/qr-scanner"),
   };
+  
   return (
     <div className="w-full">
       {/* @TODO: 이미지 중앙이 보이도록 */}
@@ -54,6 +56,7 @@ function GuestBookPage() {
         <div className="w-full px-7">
           <div className="border-slate-800 rounded-lg h-full">
             어서와 우리집은 처음이지
+            <QRScanner />
           </div>
           <Link to="/add-guestbook">
             <button className="w-full bg-primary-1 text-white text-lg font-black leading-9 m-auto rounded-xl h-14 shadow-md mb-2">
