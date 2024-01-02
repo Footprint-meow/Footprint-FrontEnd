@@ -3,13 +3,13 @@ import { Switch } from '@headlessui/react';
 
 const AddStep = () => {
   const [enabled, setEnabled] = useState(false);
-  const guestbook = '원쥬의 홈';
 
   return (
     <>
+      {/* #TODO 추후에 페이지 변경 할 수 도 있음 */}
       <div className="relative w-full ">
         <div className="absolute top-0 w-full pt-16 z-15">
-          <div className="px-6 pt-3">
+          <div className="px-8 pt-3">
             <div className="">
               <p className="text-lg font-bold">누구의 발자국인가요</p>
               <input
@@ -17,11 +17,6 @@ const AddStep = () => {
                 placeholder="이름 또는 별명을 입력해주세요"
                 className="w-full py-2 border-b outline-none "
               ></input>
-              {/* <p>{guestbook}에</p>
-              <div className="flex items-center gap-2">
-                <p>발자국을 남겨보세요</p>
-                <img src="/src/assets/green-paw-icon.png" className="w-6 h-5" />
-              </div> */}
             </div>
             <div className="py-8">
               <div>
@@ -41,20 +36,20 @@ const AddStep = () => {
                   <Switch
                     checked={enabled}
                     onChange={setEnabled}
-                    className={`${enabled ? 'bg-primary-1' : 'bg-primary-2'}
-          relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
+                    className={`${enabled ? 'bg-primary-1' : 'bg-black/10'}
+          relative inline-flex h-[33px] w-[69px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
                   >
-                    <span className="sr-only">Use setting</span>
                     <span
                       aria-hidden="true"
                       className={`${enabled ? 'translate-x-9' : 'translate-x-0'}
-            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            pointer-events-none inline-block h-[29px] w-[29px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
                   </Switch>
                 </div>
               </div>
             </div>
             <div className="py-8">
+              {/* #TODO 암호를 걸어주는데에서는 키패드가 숫자로 뜨게 */}
               <p className="text-lg font-bold">발자국의 암호를 걸어 주세요</p>
               <input
                 type="text"
@@ -63,6 +58,7 @@ const AddStep = () => {
               ></input>
             </div>
             <div className="py-8">
+              {/* #TODO 버튼 비활성화 해야함 */}
               <button className="w-full p-4 text-xl font-bold text-white rounded-2xl bg-primary-1">
                 발자국 남기기
               </button>

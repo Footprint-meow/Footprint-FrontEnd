@@ -1,16 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FootprintTab from './FootprintTab';
-import GuestBookInfo from './GuestBookInfo';
+import GuestBookInfo from '../../../components/GuestBookInfo';
 import PhotoAlbumTab from './PhotoAlbumTab';
-import '../animations.css';
-
-type TabIndex = 0 | 1;
-type TabInfo = { index: TabIndex; tabTitle: string; content: React.ReactNode };
+import { IGuestBookInfo, ITabInfo, TabIndex } from '../interfaces';
 
 const Footprint = () => {
   const [tab, setTab] = useState<TabIndex>(0);
 
-  const tabArr: TabInfo[] = [
+  const tabArr: ITabInfo[] = [
     {
       index: 0,
       tabTitle: '발자국 조회',
@@ -23,12 +20,19 @@ const Footprint = () => {
     },
   ];
 
+  const guestBookInfo: IGuestBookInfo = {
+    photo: '/src/assets/dummy2.jpg',
+    name: '원쥬의 홈',
+    address: '경상북도 구미시 인의동',
+    count: 24,
+  };
+
   const changeTab = (index: TabIndex) => {
     setTab(index);
   };
   return (
     <div className="absolute top-0 w-full pt-16 z-15">
-      <GuestBookInfo />
+      <GuestBookInfo info={guestBookInfo} hidden={null} />
       <div className="relative flex w-full pt-10 pb-2 text-center text-primary-1">
         {tabArr.map((item) => {
           return (
@@ -45,7 +49,9 @@ const Footprint = () => {
         })}
         <div className="absolute bottom-0 left-0 w-full h-[1px] bg-primary-2">
           <div
-            className={`left-0 slide relative bottom-[2px] z-10 w-1/2 h-[3px] bg-primary-1 ${'left-' + tab + '/2'}`}
+            className={`${
+              tab !== 0 ? 'left-1/2' : 'left-0'
+            } duration-500 ease-in-out relative bottom-[2px] z-10 w-1/2 h-[3px] bg-primary-1`}
           ></div>
         </div>
       </div>

@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { IoMdClose } from 'react-icons/io';
 
 function FootprintTab() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -21,6 +21,7 @@ function FootprintTab() {
         <div className="grid grid-cols-3 gap-5 pt-5">
           <div onClick={openModal} className="flex flex-col items-center justify-center">
             <img src="/src/assets/green-paw-icon.png" />
+            {/* #TODO 실제 데이터로 수정해야함 */}
             <p className="pt-2">차차</p>
           </div>
           <div className="flex flex-col items-center justify-center">
