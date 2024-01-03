@@ -11,6 +11,7 @@ import AddGuestBook from './pages/guestbook/AddGuestBook/AddGuestBook';
 import AddStep from './pages/footprint/components/AddStep';
 import AddPhoto from './pages/footprint/components/AddPhoto';
 import Footprint from './pages/footprint/components/Footprint';
+import ShareGuestBook from './pages/guestbook/ShareGuestBook/ShareGuestBook';
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         element: <Description />,
       },
     ],
+  },
+  {
+    path: '/share-guestbook',
+    element: <ShareGuestBook />,
   },
 ]);
 function App() {

@@ -1,8 +1,22 @@
+import { useNavigate } from 'react-router-dom';
 import { IGuestBookInfoProp } from '../pages/footprint/interfaces';
 
 const GuestBookInfo = (props: IGuestBookInfoProp) => {
+  const navigate = useNavigate();
+  // /share-guestbook
   const { photo, name, address, count } = props.info;
   const hidden = props.hidden;
+
+  const shareNavigate = () => {
+    navigate('/share-guestbook', {
+      state: {
+        data: {
+          img: '/src/assets/qr_dummy.png',
+          info: props.info,
+        },
+      },
+    });
+  };
 
   return (
     <div className="px-5">
@@ -20,7 +34,9 @@ const GuestBookInfo = (props: IGuestBookInfoProp) => {
           <div className="flex justify-between gap-2 text-center text-white">
             {/* #TODO 각 버튼 연결 해야함 */}
             <div className={`flex-1 p-1 text-sm rounded-md bg-primary-1 ${hidden}`}>방명록 편집</div>
-            <div className="flex-1 p-1 text-sm rounded-md bg-primary-1">방명록 공유</div>
+            <div onClick={shareNavigate} className="flex-1 p-1 text-sm rounded-md cursor-pointer bg-primary-1">
+              방명록 공유
+            </div>
           </div>
         </div>
       </div>
