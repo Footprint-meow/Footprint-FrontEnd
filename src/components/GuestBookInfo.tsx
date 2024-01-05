@@ -19,7 +19,7 @@ const GuestBookInfo = (props: IGuestBookInfoProp) => {
   };
 
   return (
-    <div className="px-5">
+    <div>
       <div className="flex items-center w-full px-6 pl-3 rounded-full bg-sub-2">
         <img src={photo} className="object-cover w-20 h-20 rounded-full" />
         <div className="bg-white rounded-full "></div>

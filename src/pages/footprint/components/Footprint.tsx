@@ -32,7 +32,9 @@ const Footprint = () => {
   };
   return (
     <div className="absolute top-0 w-full pt-16 z-15">
-      <GuestBookInfo info={guestBookInfo} hidden={null} />
+      <div className="px-5">
+        <GuestBookInfo info={guestBookInfo} hidden={null} />
+      </div>
       <div className="relative flex w-full pt-10 pb-2 text-center text-primary-1">
         {tabArr.map((item) => {
           return (

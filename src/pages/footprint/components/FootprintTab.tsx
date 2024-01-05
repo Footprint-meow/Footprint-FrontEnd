@@ -1,6 +1,6 @@
-import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { IoMdClose } from 'react-icons/io';
+import { Fragment, useState } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+import { IoMdClose } from "react-icons/io";
 
 function FootprintTab() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -8,7 +8,8 @@ function FootprintTab() {
   function closeModal() {
     setIsOpen(false);
   }
-
+  // #TODO 유저아이디랑 방명록 작성자 아이디가 같으면 읽음 처리 API 호출해야함
+  // 비밀글인 경우에는 호출안해도 된다고 함
   function openModal() {
     setIsOpen(true);
   }

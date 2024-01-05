@@ -8,9 +8,12 @@ import Profile from './pages/guestbook/AddGuestBook/components/Profile';
 import Photo from './pages/guestbook/AddGuestBook/components/Photo';
 import Description from './pages/guestbook/AddGuestBook/components/Description';
 import AddGuestBook from './pages/guestbook/AddGuestBook/AddGuestBook';
-import AddStep from './pages/footprint/components/AddStep';
+import AddStep from './pages/footprint/AddStep/AddStep';
 import AddPhoto from './pages/footprint/components/AddPhoto';
 import Footprint from './pages/footprint/components/Footprint';
+import Writer from './pages/footprint/AddStep/components/Writer';
+import Impression from './pages/footprint/AddStep/components/Impression';
+import Password from './pages/footprint/AddStep/components/Password';
 import ShareGuestBook from './pages/guestbook/ShareGuestBook/ShareGuestBook';
 
 const router = createBrowserRouter([
@@ -31,12 +34,26 @@ const router = createBrowserRouter([
         element: <Footprint />,
       },
       {
-        path: 'add-step',
-        element: <AddStep />,
-      },
-      {
         path: 'add-photo',
         element: <AddPhoto />,
+      },
+      {
+        path: 'add-step',
+        element: <AddStep />,
+        children: [
+          {
+            path: '',
+            element: <Writer />,
+          },
+          {
+            path: 'impression',
+            element: <Impression />,
+          },
+          {
+            path: 'pwd',
+            element: <Password />,
+          },
+        ],
       },
     ],
   },
