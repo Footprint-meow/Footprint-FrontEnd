@@ -8,9 +8,9 @@ const MyGuestBookList = () => {
   }
 
   return (
-    <div className="flex flex-col items-start justify-between px-7 py-5 min-h-1/3 m-0 w-screen overflow-x-auto whitespace-nowrap overflow-y-hidden">
+    <div className="flex flex-col items-start justify-between px-7 py-5 min-h-1/3 m-0 w-screen">
       <p className="text-xl font-bold pb-4">나의 방명록</p>
-      <div>
+      <div className="w-full overflow-x-auto whitespace-nowrap overflow-y-hidden">
         <ul className="flex gap-4">
           {guestbooks.map((book, index) =>
             book !== "add" ? (
