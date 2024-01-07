@@ -1,12 +1,14 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IMenu, IMenuFunc } from "../../../types/header";
 import Header from "../../../components/Header";
 import { icons } from "../../../constants/header-icons";
 import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 
 const EditGuestBook = () => {
   const navigate = useNavigate();
+  const [imgFile, setImgFile] = useState<string>("");
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const menu: IMenu = {
     left: icons.BACK,
@@ -19,16 +21,55 @@ const EditGuestBook = () => {
     right_func: null,
   };
 
+  const saveImgFile = () => {
+    const file = imgRef.current?.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+
+        img.onload = () => {
+          const size = Math.min(img.width, img.height);
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          if (ctx) {
+            canvas.width = size;
+            canvas.height = size;
+            ctx.drawImage(
+              img,
+              (img.width - size) / 2,
+              (img.height - size) / 2,
+              size,
+              size,
+              0,
+              0,
+              size,
+              size
+            );
+
+            setImgFile(canvas.toDataURL("image/jpeg"));
+          }
+        };
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="w-full">
       <Header menu={menu} func={func} />
       <div className="h-[calc(100vh-2.5rem)] mt-10 flex flex-col bg-[#F1F1F16B] gap-3 overflow-y-auto">
-        <div className="pt-3">
+        <div className="">
           <div className="bg-white px-7 pt-5 pb-7">
             <h2 className="text-lg font-bold py-2">방명록 이름</h2>
             <input type="text" placeholder="원쥬의 홈" className="w-full" />
           </div>
-          <div className="bg-white px-7 py-3">
+          <div className="bg-white px-7 pb-7">
             <h2 className="text-lg font-bold py-2">주소</h2>
             <input
               type="text"
@@ -40,7 +81,32 @@ const EditGuestBook = () => {
         </div>
         <div className="bg-white px-7 pt-5 pb-7">
           <h2 className="text-lg font-bold py-2">대표 이미지</h2>
-          <img src="/src/assets/home-img.png" alt="home" />
+          <form className="rounded-2xl flex-1 bg-[#D9D9D92B]">
+            <label
+              className="flex items-center justify-center w-full h-full"
+              htmlFor="photoImg"
+            >
+              {imgFile ? (
+                <img
+                  src={imgFile}
+                  className="object-cover w-full h-full rounded-2xl"
+                ></img>
+              ) : (
+                <img
+                  src="/src/assets/home-img.png"
+                  className="object-cover w-full h-full rounded-2xl"
+                ></img>
+              )}
+            </label>
+            <input
+              onChange={saveImgFile}
+              ref={imgRef}
+              type="file"
+              accept="image/*"
+              id="photoImg"
+              className="hidden w-full h-full cursor-pointer"
+            ></input>
+          </form>
         </div>
         <div className="bg-white px-7 pt-5 pb-7">
           <h2 className="text-lg font-bold py-2">인사말</h2>
