@@ -57,6 +57,7 @@ const EditGuestBook = () => {
       };
 
       reader.readAsDataURL(file);
+      
     }
   };
 

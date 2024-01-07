@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import ImageUploading, { ImageListType } from "react-images-uploading";
 import { CiCamera } from "react-icons/ci";
 import { IGuesetBookState } from "../../interfaces";
 import { confirmPhoto } from "../../utils";
@@ -8,12 +7,9 @@ import { confirmPhoto } from "../../utils";
 const Photo = () => {
   const navigate = useNavigate();
   const { guestbook, setGuestbook } = useOutletContext<IGuesetBookState>();
-  const [photo, setPhoto] = useState([]);
   const [shake, setShake] = useState<boolean>(false);
-
-  const onChange = (imageList: ImageListType) => {
-    setPhoto(imageList as never[]);
-  };
+  const [imgFile, setImgFile] = useState<string>("");
+  const imgRef = useRef<HTMLInputElement>(null);
 
   const nextHandler = () => {
     if (confirmPhoto(guestbook)) {
@@ -27,11 +23,51 @@ const Photo = () => {
   useEffect(() => {
     setGuestbook((prevState) => ({
       ...prevState!,
-      photo: photo,
+      photo: imgFile,
     }));
 
     console.log("Photo에서 : ", guestbook);
-  }, [photo]);
+    console.log("imgFile: ", imgFile);
+  }, [imgFile]);
+
+  const saveImgFile = () => {
+    const file = imgRef.current?.files?.[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const img = new Image();
+        img.src = reader.result as string;
+
+        img.onload = () => {
+          const size = Math.min(img.width, img.height);
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          if (ctx) {
+            canvas.width = size;
+            canvas.height = size;
+            ctx.drawImage(
+              img,
+              (img.width - size) / 2,
+              (img.height - size) / 2,
+              size,
+              size,
+              0,
+              0,
+              size,
+              size
+            );
+
+            setImgFile(canvas.toDataURL("image/jpeg/png"));
+          }
+        };
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div className="px-2 py-4 w-full h-full flex flex-col justify-between">
@@ -44,43 +80,32 @@ const Photo = () => {
         <p>설정해 주세요</p>
       </div>
       <div className="h-1/2">
-        <ImageUploading
-          value={photo}
-          onChange={onChange}
-          maxNumber={1}
-          dataURLKey="data_url"
-        >
-          {({ imageList, onImageUpload, onImageUpdate }) => (
-            // write your building UI
-            <div className="h-full">
-              {imageList.length <= 0 && (
-                <button
-                  onClick={onImageUpload}
-                  className="w-full h-full bg-[#d9d9d93f] rounded-xl"
-                >
-                  <CiCamera
-                    size="3rem"
-                    style={{ color: "#878787", margin: "auto" }}
-                  />
-                </button>
-              )}
-              {imageList.map((image, index) => (
-                <div key={index} className="">
-                  <button
-                    onClick={() => onImageUpdate(index)}
-                    className="w-full"
-                  >
-                    <img
-                      src={image["data_url"]}
-                      alt="guestbook-profile-image"
-                      className="w-full"
-                    />
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </ImageUploading>
+        <form className="rounded-2xl flex-1 bg-[#D9D9D92B] h-full">
+          <label
+            className="flex items-center justify-center w-full h-full"
+            htmlFor="photoImg"
+          >
+            {imgFile ? (
+              <img
+                src={imgFile}
+                className="object-cover w-full h-full rounded-2xl"
+              ></img>
+            ) : (
+              <CiCamera
+                size="3rem"
+                style={{ color: "#878787", margin: "auto" }}
+              />
+            )}
+          </label>
+          <input
+            onChange={saveImgFile}
+            ref={imgRef}
+            type="file"
+            accept="image/*"
+            id="photoImg"
+            className="hidden w-full h-full cursor-pointer"
+          ></input>
+        </form>
       </div>
 
       <div onClick={nextHandler}>

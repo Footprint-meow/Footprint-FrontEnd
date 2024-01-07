@@ -46,7 +46,7 @@ export const confirmProfile = (guestbook: IGuestBook | null): boolean => {
 };
 
 export const confirmPhoto = (guestbook: IGuestBook | null): boolean => {
-  if (guestbook && guestbook.photo?.length) {
+  if (guestbook && guestbook.photo !== "") {
     return true;
   }
   return false;
